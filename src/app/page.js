@@ -1,11 +1,15 @@
-import { Map } from "@/components";
+import dynamic from "next/dynamic";
 
 export default function Home() {
+  const DynamicMapImport = dynamic(() => import("@/components/Map"), {
+    ssr: false,
+  });
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full flex-col items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="my-6">Next.js Map Application</h1>
-        <Map />
+    <main>
+      <div className="h-screen w-screen flex-col items-center font-mono px-12 py-6">
+        <h1 className="my-6 text-center">Next.js Map Application Demo</h1>
+        <DynamicMapImport />
       </div>
     </main>
   );
